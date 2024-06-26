@@ -1,0 +1,73 @@
+classes:
+
+	user: {
+			id,
+			firstName,
+			lastName,
+			addresses [arrayOfAddresses],
+			image,
+			type: Seller | Buyer,
+			methods: [	
+						addAddress(addresses.push(newAddress))
+					]
+		}
+	apiEndpoints: [
+					addUser,
+					deleteUser,
+					updateUser
+				]
+
+	address: {
+				title,
+				address,
+				methods: []
+	}
+	apiEndpoints: [
+					addAddress,
+					deleteAddress,
+					updateAddress
+				]
+
+
+	category: {
+				title,
+				description,
+				image,
+				methods: []
+	}
+	apiEndpount: [
+					addCategory,
+					deleteCategory,
+					updateCategory,
+	]
+
+	product: {
+				id,
+				title,
+				description,
+				price,
+				category,
+				image,
+				methods: []
+
+	}
+	apiEndpoints: [
+					addProduct,
+					deleteProduct,
+					updateProduct
+				]
+
+	order: {
+			id,
+			productId,
+			userId,
+			status,
+			methods: []
+	}
+	apiEndpoints: [
+					addOrder,
+					deleteOrder,
+					updateOrder,
+					cancelOrder
+	]
+
