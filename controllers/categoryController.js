@@ -1,13 +1,15 @@
 import { ObjectId } from 'mongodb';
 import dbClient from '../utils/db.js';
+import { Category } from './models.js';
 
 export default class CategoryController {
     static async postCategory(req, res) {
         const { title } = req.body;
 
         try {
+            const category = new Category(title);
             const newCategory = dbClient.categoryCollection.insertOne(
-                { title }
+                category
             );
             if (!newCategory) return res.status(401).send({ error: 'An error occurred' });
 
@@ -42,5 +44,19 @@ export default class CategoryController {
         //     console.error(err);
         //     return res.status(500).send({ error: 'Server error' });
         // }
+    }
+
+    static async deleteCategory(req, res) {
+        const { id } = req.params;
+        try {
+            await dbClient.categoryCollection.deleteOne(
+                { _id: new ObjectId(id) }
+            )
+
+            res.status(203).send({ Message: 'Category deleted successfully'});
+        } catch (err) {
+            console.error(err);
+            res.status(500).send({ error: "Server error" });
+        }
     }
 }

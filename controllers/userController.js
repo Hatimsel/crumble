@@ -1,6 +1,7 @@
 import sha1 from 'sha1';
 import { ObjectId } from 'mongodb';
 import dbClient from '../utils/db.js';
+import { User } from './models.js';
 
 export default class UserController {
   static async postUser(req, res) {
@@ -21,9 +22,10 @@ export default class UserController {
     }
 
     const hashedPass = sha1(password);
+    const user = new User(email, hashedPass, type);
     try {
       const newUser = await dbClient.userCollection
-        .insertOne({ email, password: hashedPass, type });
+        .insertOne(user);
 
       return res.status(201).send({ id: newUser.insertedId, email, type });
     } catch (err) {

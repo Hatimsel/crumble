@@ -5,11 +5,11 @@ export class User {
     addresses = []
     image = ""
     
-    constructor(firstName, lastName, type) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    constructor(email, password, type) {
+        this.email = email;
+        this.password = password;
         this.type = type;
-        this.id = uuidv4();
+        // this.id = uuidv4();
     }
 
     addAddress(address) {
