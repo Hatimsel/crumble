@@ -36,9 +36,10 @@ export default class UserController {
     const { id } = req.params;
 
     try {
-        const user = await dbClient.userCollection.findOne({
-            _id: new ObjectId(id)
-        });
+        const user = await dbClient.userCollection.findOne(
+          { _id: new ObjectId(id) },
+          { projection: { password: 0 } }
+        );
         if (user) {
             return res.status(200).send(user);
         } else {
@@ -74,7 +75,10 @@ export default class UserController {
 
   static async allUsers(req, res) {
     try {
-        const usersCursor = dbClient.userCollection.find();
+        const usersCursor = dbClient.userCollection.find(
+          {},
+          { projection: { password: 0 } }
+        );
         const users = await usersCursor.toArray();
 
         if (users) {
