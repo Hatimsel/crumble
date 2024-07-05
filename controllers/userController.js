@@ -91,4 +91,23 @@ export default class UserController {
         return res.status(500).send({ error: "Server Error" });
     }
   }
+
+  static async deleteUser(req, res) {
+    const { id } = req.params;
+
+    try {
+      dbClient.userCollection.deleteOne({
+        _id: new ObjectId(id)
+      }).then((result) => {
+        console.log(result);
+        return res.status(203).send({ Message: `User deleted successfully` });
+      }).catch((err) => {
+        console.error(err);
+        return res.status(401).send({ error: `Operation failed` });
+      })
+    } catch(err) {
+      console.error(err);
+      return res.status(500).send({ error: 'Server error' });
+    }
+  }
 }
