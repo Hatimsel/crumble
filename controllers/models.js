@@ -39,7 +39,7 @@ export class Product {
     description  = ''
 
     constructor(title, price) {
-        this.id = uuidv4();
+        // this.id = uuidv4();
         this.title = title;
         this.price = price;
     }
