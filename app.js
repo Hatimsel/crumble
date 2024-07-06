@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import userRouter from './routes/users.js';
 import categoryRouter from './routes/categories.js';
 import productRouter from './routes/products.js';
+import orderRouter from './routes/orders.js';
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(bodyParser.json());
 app.use('/users', userRouter);
 app.use('/categories', categoryRouter);
 app.use('/products', productRouter);
+app.use('/orders', orderRouter);
+
 
 app.get('/', (req, res) => res.send('Welcome to Crumble!'));
 

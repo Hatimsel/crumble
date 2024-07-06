@@ -51,7 +51,7 @@ export class Product {
 
 export class Order {
     constructor(productId, userId) {
-        this.id = uuidv4();
+        // this.id = uuidv4();
         this.productId = productId;
         this.userId = userId;
         this.status = 'Processing';
